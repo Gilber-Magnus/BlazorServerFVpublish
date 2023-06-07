@@ -1,0 +1,45 @@
+﻿@page "/Pages/Checkout"
+@using BlazorApp1.Models;
+@using BlazorApp1.Services;
+@inject CartService CartService
+@inject IJSRuntime IJSRuntime
+
+<h3>Checkout</h3>
+
+<h3>You have @CartService.SelectedItems.Count item(s) in cart:</h3>
+<ProductList Products="CartService.SelectedItems"> </ProductList>
+
+<EditForm class="vstack gap-3" Model="CheckoutForm">
+
+<DataAnnotationsValidator>
+
+</DataAnnotationsValidator>
+
+<div>
+    <label class="form-label" for="name">Name:</label>
+    <InputText id="name" class="form-control" @bind-Value="CheckoutForm.Name"></InputText>
+    <ValidationMessage class="form-control" For="()=>CheckoutForm.Name"></ValidationMessage>
+</div>
+
+<div>
+    <label class="form-label" for="adress">Address</label>
+    <InputText id="address" class="form-control" @bind-Value="CheckoutForm.Adress"></InputText>
+    <ValidationMessage class="form-control" For="()=>CheckoutForm.Adress"></ValidationMessage>
+</div>
+
+<div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+</EditForm>
+
+
+@code {
+    public CheckoutForm CheckoutForm { get; set; } = new();
+
+    /*private async Task SubmitAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("alert", $"Thank you{CheckoutForm.Name}, we will deliver to {CheckoutForm.Adress}.");
+
+    }*/
+    /* OnInvalidSubmit="SubmitAsync"*/
+}

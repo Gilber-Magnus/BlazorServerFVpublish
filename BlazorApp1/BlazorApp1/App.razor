@@ -1,0 +1,35 @@
+﻿<CascadingAuthenticationState>
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+        
+        <NotAuthorized>
+            <div>You are not authorized</div>
+        </NotAuthorized>
+        
+        <Authorizing>
+            <div>Authorizing...</div>
+        </Authorizing>
+        </AuthorizeRouteView>
+        <AuthorizeView Roles="normal_user,paid_user,admin">
+            <Authorized>Content for users with paid or normal or both roles</Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="paid_user">
+           <Authorized>Content for paid users</Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="admin">
+           <Authorized>Content for admin users</Authorized>
+        </AuthorizeView>
+
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+</CascadingAuthenticationState> 

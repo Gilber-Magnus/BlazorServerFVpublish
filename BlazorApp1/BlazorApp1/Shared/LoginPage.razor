@@ -1,0 +1,18 @@
+﻿@page "/Shared/Login"
+@inject UserAuthStateProvider UserAuthStateProvider
+@attribute [AllowAnonymous]
+
+<div>Full name:
+    @UserAuthStateProvider.CurrentUser.FullName
+</div>
+<h3>LoginPage</h3>
+<div> Username: @UserAuthStateProvider.CurrentUser.Username</div>
+<button type="button" class="btn btn-success"
+@onclick="LoginAsync">Login</button>
+
+@code {
+    public async Task LoginAsync()
+    {
+        await UserAuthStateProvider.LoginAsync("blazorschool", "blazorschool");
+    }
+}

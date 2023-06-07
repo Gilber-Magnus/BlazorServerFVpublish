@@ -1,0 +1,17 @@
+﻿@page "/"
+@page "/home"
+@using BlazorApp1.Models;
+@using BlazorApp1.Services;
+@using BlazorApp1.Shared;
+
+<PageTitle>Index</PageTitle>
+
+    <ProductList Products ="Products"
+    DisplayBuyButton="true"></ProductList>
+
+
+@code{
+    public List<Product> Products { get; set; } = ProductProviderService.Products.ToList();
+
+
+}
